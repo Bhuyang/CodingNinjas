@@ -2,27 +2,26 @@
 public class Solution {
 
     public static void sumOfTwoArrays(int arr1[], int arr2[], int output[]) {
-    	int borrowing = 0;
-    
-    for (int i = arr1.length - 1, j = arr2.length - 1; i >= 0; i--, j--) {
-        int n1 = arr1[i];
-        int n2 = 0;
-        if (j >= 0) {
-            n2 = arr2[j];
+    	 int i= arr1.length-1;
+        int j= arr2.length-1;
+        int k= output.length-1;
+        int carry=0;
+        while(k>=0){
+            int sum=carry;
+            if(i>=0){
+                sum=sum+arr1[i];
+            }
+            if(j>=0){
+                sum=sum+arr2[j];
+            }
+            
+            int val = sum%10;
+            carry = sum/10;
+            output[k]=val;
+            i--;
+            j--;
+            k--;      
         }
-
-        int temp = n1 + n2 + borrowing;
-        borrowing = 0; 
-
-        if (temp > 9) {
-            borrowing = 1;
-            temp -= 10;
-        }
-        output[i+1] = temp;
-    }
-    if (borrowing > 0) {
-        output[0] = borrowing;
-    }
    
     }
 
